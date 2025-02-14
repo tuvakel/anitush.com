@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Her Quiet Radiance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald: #1c7c54;
+      --twilight: #2c3e50;
+      --gold: #d4af37;
+      --cream: #fff5e6;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream);
+      color: var(--twilight);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .hero {
+      height: 100vh;
+      background: 
+        linear-gradient(to bottom, rgba(28, 124, 84, 0.7), rgba(44, 62, 80, 0.7)), /* Gradient overlay */
+        url('anita.jpg') center/cover no-repeat; /* Background image */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10.01%);
+      background-size: 20px 20px;
+      animation: ripple 10s infinite linear;
+    }
+
+    @keyframes ripple {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4em;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .poem {
+      padding: 50px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.4em;
+      line-height: 1.8;
+      background: rgba(255, 245, 230, 0.9);
+      border-radius: 10px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .poem p {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s, transform 1s;
+      cursor: default;
+    }
+
+    .poem p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover effect for a subtle interactive feel */
+    .poem p:hover {
+      transform: translateY(-2px) scale(1.02);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      color: var(--emerald);
+      background: var(--cream);
+      position: relative;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .footer::before {
+      content: '❤️';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+      animation: pulse 2s infinite, float 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+
+    /* Falling Leaves Animation */
+    .leaf {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://www.freeiconspng.com/uploads/leaf-png-28.png') center/cover no-repeat;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* Glowing Particles */
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0); }
+    }
+
+    /* --- Additional Artistic Enhancements --- */
+
+    /* Artistic Flourish - Animated Brush Stroke */
+    .artistic-flourish {
+      width: 80%;
+      height: 4px;
+      margin: 30px auto;
+      background: linear-gradient(to right, var(--gold), var(--emerald));
+      opacity: 0.7;
+      animation: flourish 4s ease-in-out infinite;
+    }
+
+    @keyframes flourish {
+      0% { transform: scaleX(0); opacity: 0; }
+      50% { transform: scaleX(1.1); opacity: 1; }
+      100% { transform: scaleX(0); opacity: 0; }
+    }
+
+    /* Watercolor Splash Overlay for a subtle artistic texture */
+    .watercolor-splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: -1;
+      animation: watercolorShift 20s infinite ease-in-out;
+    }
+
+    @keyframes watercolorShift {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.05) rotate(2deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    /* Artistic Signature */
+    .signature {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      margin: 20px;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+
+    /* Inky Tendrils - Abstract drifting ink effects */
+    .inky-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .inky-tendril {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(28,124,84,0.2), transparent);
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0;
+      animation: inkyFlow 8s infinite;
+    }
+
+    @keyframes inkyFlow {
+      0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(200px, 300px) scale(1.2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translate(-100px, 500px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Interactive Ink Droplet that follows the cursor */
+    #ink-droplet {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, rgba(212,175,55,0.8), rgba(28,124,84,0.2));
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 10;
+    }
+
+    /* --- New Interactive Artistic Effects --- */
+
+    /* Ink Ripple on Click */
+    .ink-ripple {
+      position: absolute;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      opacity: 0.75;
+      pointer-events: none;
+      animation: inkRippleAnim 1s ease-out forwards;
+    }
+
+    @keyframes inkRippleAnim {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0.75;
+      }
+      100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+      }
+    }
+
+    /* Floating Text on Double Click */
+    .floating-text {
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      color: var(--gold);
+      opacity: 1;
+      animation: floatText 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-50px); opacity: 0; }
+    }
+
+    /* Canvas Doodle - Interactive swirling particles */
+    #doodle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Her Quiet Radiance</h1>
+    <!-- Inky Tendrils Container will be appended here by JS -->
+  </div>
+
+  <div class="poem">
+    <p>It’s in her hazel-brown eyes—</p>
+    <p>a gentle blend of earth and forest,</p>
+    <p>warm and deep, turning green only when kissed by light,</p>
+    <p>holding both calm and quiet wonder.</p>
+    <br>
+    <p>Her lips, soft and unspoken poetry,</p>
+    <p>curl into a quiet smile that feels familiar,</p>
+    <p>like a secret only she knows,</p>
+    <p>gentle, playful, and effortlessly real.</p>
+    <br>
+    <p>Dark brown waves of hair frame her face,</p>
+    <p>falling freely like a midnight breeze,</p>
+    <p>each strand catching the light,</p>
+    <p>a perfect balance of wild and calm.</p>
+    <br>
+    <p>But it’s her soul that truly shines—</p>
+    <p>kindness woven into every word,</p>
+    <p>a heart that listens, gives, and heals,</p>
+    <p>caring deeply in a world that often forgets.</p>
+    <br>
+    <p>Her beauty is more than what you see—</p>
+    <p>it’s in how she makes you feel.</p>
+  </div>
+
+  <div class="footer">
+    Her beauty is more than what you see—it’s in how she makes you feel.
+  </div>
+
+  <!-- Additional Artistic Elements -->
+  <div class="artistic-flourish"></div>
+  <div class="signature">~ A Quiet Muse ~</div>
+
+  <!-- Falling Leaves -->
+  <div class="leaf" style="left: 10%; animation-duration: 8s;"></div>
+  <div class="leaf" style="left: 30%; animation-duration: 10s;"></div>
+  <div class="leaf" style="left: 50%; animation-duration: 12s;"></div>
+  <div class="leaf" style="left: 70%; animation-duration: 9s;"></div>
+  <div class="leaf" style="left: 90%; animation-duration: 11s;"></div>
+
+  <!-- Glowing Particles -->
+  <div class="particle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+  <div class="particle" style="top: 40%; left: 50%; animation-delay: 1s;"></div>
+  <div class="particle" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+  <div class="particle" style="top: 80%; left: 30%; animation-delay: 3s;"></div>
+
+  <!-- Watercolor Splash Background -->
+  <div class="watercolor-splash"></div>
+
+  <!-- Interactive Ink Droplet -->
+  <div id="ink-droplet"></div>
+
+  <!-- Canvas Doodle for interactive swirling particles -->
+  <canvas id="doodle-canvas"></canvas>
+
+  <script>
+    // Fade in poem lines as user scrolls
+    const poemLines = document.querySelectorAll('.poem p');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+    poemLines.forEach(line => observer.observe(line));
+
+    // Add more falling leaves dynamically
+    function createLeaves() {
+      const container = document.body;
+      for (let i = 0; i < 10; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        leaf.style.left = Math.random() * 100 + '%';
+        leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
+        container.appendChild(leaf);
+      }
+    }
+    createLeaves();
+
+    // Add glowing particles dynamically
+    function createParticles() {
+      const container = document.body;
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // Create Inky Tendrils for an abstract artistic effect
+    function createInkyTendrils() {
+      const inkyContainer = document.createElement('div');
+      inkyContainer.className = 'inky-container';
+      document.querySelector('.hero').appendChild(inkyContainer);
+      for (let i = 0; i < 10; i++) {
+        const tendril = document.createElement('div');
+        tendril.className = 'inky-tendril';
+        tendril.style.top = Math.random() * 100 + '%';
+        tendril.style.left = Math.random() * 100 + '%';
+        tendril.style.animationDuration = Math.random() * 5 + 5 + 's';
+        inkyContainer.appendChild(tendril);
+      }
+    }
+    createInkyTendrils();
+
+    // Interactive Ink Droplet that follows the mouse
+    document.addEventListener('mousemove', function(e) {
+      const droplet = document.getElementById('ink-droplet');
+      droplet.style.left = e.clientX + 'px';
+      droplet.style.top = e.clientY + 'px';
+      droplet.style.opacity = 1;
+    });
+    document.addEventListener('mouseout', function() {
+      const droplet = document.getElementById('ink-droplet');
+      droplet.style.opacity = 0;
+    });
+
+    // Ink Ripple Effect on Click
+    document.addEventListener('click', function(e) {
+      const ripple = document.createElement('div');
+      ripple.className = 'ink-ripple';
+      // Center the ripple on click
+      ripple.style.left = (e.clientX - 100) + 'px';
+      ripple.style.top = (e.clientY - 100) + 'px';
+      document.body.appendChild(ripple);
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
+
+    // Floating Text Effect on Double Click
+    document.addEventListener('dblclick', function(e) {
+      const words = ['Inspire', 'Dream', 'Art', 'Soul', 'Whisper'];
+      const text = words[Math.floor(Math.random() * words.length)];
+      const floatingText = document.createElement('div');
+      floatingText.className = 'floating-text';
+      floatingText.innerText = text;
+      floatingText.style.left = e.clientX + 'px';
+      floatingText.style.top = e.clientY + 'px';
+      document.body.appendChild(floatingText);
+      floatingText.addEventListener('animationend', () => {
+        floatingText.remove();
+      });
+    });
+
+    // Canvas Doodle: Interactive swirling particles
+    const canvas = document.getElementById('doodle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    const numParticles = 100;
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        radius: Math.random() * 3 + 1,
+        alpha: Math.random() * 0.5 + 0.5
+      });
+    }
+
+    let mouseX = null, mouseY = null;
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        // Bounce off edges
+        if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
+        if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
+        // Attract to mouse when nearby
+        if (mouseX !== null && mouseY !== null) {
+          const dx = mouseX - p.x;
+          const dy = mouseY - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            p.vx += dx / 1000;
+            p.vy += dy / 1000;
+          }
+        }
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212,175,55,${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    window.addEventListener('resize', function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
